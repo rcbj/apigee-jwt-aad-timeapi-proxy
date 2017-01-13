@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="rule1">
+            <Condition>jwt_error != null</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>AM-PublishError</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <Flows>
+        <Flow name="parse + validate alg=RS256-ms">
+            <Description>Parse / Verify a JWT created by Azure Active Directory</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>CacheLookup-MsCert</Name>
+                </Step>
+                <Step>
+                    <Condition>cached.ms.cert = null</Condition>
+                    <FaultRules/>
+                    <Name>SC-RetrieveMicrosoftCert</Name>
+                </Step>
+                <Step>
+                    <Condition>cached.ms.cert = null</Condition>
+                    <FaultRules/>
+                    <Name>JS-RemoveXmlDeclaration</Name>
+                </Step>
+                <Step>
+                    <Condition>cached.ms.cert = null</Condition>
+                    <FaultRules/>
+                    <Name>Extract-MsCert</Name>
+                </Step>
+                <Step>
+                    <Condition>cached.ms.cert = null</Condition>
+                    <FaultRules/>
+                    <Name>CacheInsert-MsCert</Name>
+                </Step>
+                <Step>
+                    <Condition>cached.ms.cert != null</Condition>
+                    <FaultRules/>
+                    <Name>AV-MsCert</Name>
+                </Step>
+                <Step>
+                    <Name>Extract-JWT-Assign-Message</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>JWT-Parse-Verify-RS256-ms</Name>
+                </Step>
+                <Step>
+                    <Condition>jwt_isValid = false</Condition>
+                    <FaultRules/>
+                    <Name>RF-BadJwt</Name>
+                </Step>
+                <Step>
+                    <Name>JavaScript-1</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix ~~ "/utc/now.json") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="unknown request">
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>RF-UnknownRequest</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <PreFlow name="PreFlow">
+        <Request/>
+        <Response/>
+    </PreFlow>
+    <HTTPProxyConnection>
+        <BasePath>/time</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

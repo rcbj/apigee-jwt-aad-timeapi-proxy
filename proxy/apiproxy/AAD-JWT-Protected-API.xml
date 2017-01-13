@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="8" name="AAD-JWT-Protected-API">
+    <Basepaths>/jwt_signed</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1483739074151</CreatedAt>
+    <CreatedBy>robert.broeckelmann@levvel.io</CreatedBy>
+    <DisplayName>jwt_signed</DisplayName>
+    <LastModifiedAt>1483739074151</LastModifiedAt>
+    <LastModifiedBy>robert.broeckelmann@levvel.io</LastModifiedBy>
+    <Policies>
+        <Policy>AM-PublishError</Policy>
+        <Policy>AV-MsCert</Policy>
+        <Policy>CacheInsert-MsCert</Policy>
+        <Policy>CacheLookup-MsCert</Policy>
+        <Policy>Extract-JWT-Assign-Message</Policy>
+        <Policy>Extract-MsCert</Policy>
+        <Policy>JS-RemoveXmlDeclaration</Policy>
+        <Policy>JWT-Parse-Verify-RS256-ms</Policy>
+        <Policy>JavaScript-1</Policy>
+        <Policy>RF-BadJwt</Policy>
+        <Policy>RF-UnknownRequest</Policy>
+        <Policy>SC-RetrieveMicrosoftCert</Policy>
+        <Policy>add-cors</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://removeAuthorizationHeader.js</Resource>
+        <Resource>jsc://removeXmlDeclaration.js</Resource>
+        <Resource>java://commons-lang3-3.4.jar</Resource>
+        <Resource>java://guava-18.0.jar</Resource>
+        <Resource>java://json-smart.jar</Resource>
+        <Resource>java://jwt-signed-edge-callout.jar</Resource>
+        <Resource>java://nimbus-jose-jwt-3.10.jar</Resource>
+        <Resource>java://not-yet-commons-ssl.jar</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

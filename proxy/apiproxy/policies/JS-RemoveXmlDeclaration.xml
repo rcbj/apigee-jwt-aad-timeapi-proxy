@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript timeLimit="200" async="false" continueOnError="false" enabled="true" name="JS-RemoveXmlDeclaration">
+    <DisplayName>JS-RemoveXmlDeclaration</DisplayName>
+    <FaultRules/>
+    <Properties>
+        <Property name="xmldoc">msCert.content</Property>
+    </Properties>
+    <ResourceURL>jsc://removeXmlDeclaration.js</ResourceURL>
+</Javascript>

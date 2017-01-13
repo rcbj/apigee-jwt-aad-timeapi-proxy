@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="CacheInsert-MsCert">
+    <DisplayName>CacheInsert-MsCert</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <CacheKey>
+        <Prefix>mscert</Prefix>
+        <KeyFragment>1</KeyFragment>
+    </CacheKey>
+    <CacheResource>signer-cert</CacheResource>
+    <Scope>Application</Scope>
+    <ExpirySettings>
+        <TimeoutInSec>7200</TimeoutInSec>
+    </ExpirySettings>
+    <Source>ms.certificate</Source>
+</PopulateCache>

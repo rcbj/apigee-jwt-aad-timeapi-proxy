@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<JavaCallout async="false" continueOnError="false" enabled="true" name="JWT-Parse-Verify-RS256-ms">
+    <DisplayName>JWT-Parse-Verify-RS256-ms</DisplayName>
+    <FaultRules/>
+    <Properties>
+        <Property name="certificate">{ms.certificate}</Property>
+        <Property name="algorithm">RS256</Property>
+        <Property name="claim_ver">1.0</Property>
+        <Property name="claim_iss">https://sts.windows.net/75de389c-8f67-4084-9065-3a9c31e1db13/</Property>
+        <Property name="jwt">{authn.jwt}</Property>
+        <Property name="claim_aud">https://rcbj0001-api.rcbj.net</Property>
+    </Properties>
+    <ClassName>com.apigee.callout.jwtsigned.JwtParserCallout</ClassName>
+    <ResourceURL>java://jwt-signed-edge-callout.jar</ResourceURL>
+</JavaCallout>

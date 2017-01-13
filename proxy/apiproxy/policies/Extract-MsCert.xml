@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-MsCert">
+    <DisplayName>Extract-MsCert</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">msCert</Source>
+    <VariablePrefix>ms</VariablePrefix>
+    <XMLPayload stopPayloadProcessing="false">
+        <Namespaces>
+            <Namespace prefix="saml">urn:oasis:names:tc:SAML:2.0:metadata</Namespace>
+            <Namespace prefix="ds">http://www.w3.org/2000/09/xmldsig#</Namespace>
+        </Namespaces>
+        <Variable name="certificate" type="string">
+            <XPath>/saml:EntityDescriptor/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate/text()</XPath>
+        </Variable>
+    </XMLPayload>
+</ExtractVariables>

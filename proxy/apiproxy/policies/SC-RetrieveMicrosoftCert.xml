@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-RetrieveMicrosoftCert">
+    <DisplayName>SC-RetrieveMicrosoftCert</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Request clearPayload="false">
+        <Set>
+            <Verb>GET</Verb>
+        </Set>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>msCert</Response>
+    <HTTPTargetConnection>
+        <Properties>
+            <Property name="success.codes">2xx</Property>
+        </Properties>
+        <URL>https://login.windows.net/75de389c-8f67-4084-9065-3a9c31e1db13/FederationMetadata/2007-06/FederationMetadata.xml</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

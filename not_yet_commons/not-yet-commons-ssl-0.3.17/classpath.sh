@@ -1,0 +1,1 @@
+export CLASSPATH=/opt/dev/t/17/lib/bcprov-ext-jdk15on-151.jar:/opt/dev/t/17/lib/commons-httpclient-3.0.jar:/opt/dev/t/17/lib/commons-logging-1.0.4.jar:/opt/dev/t/17/lib/junit4-4.11.jar:/opt/dev/t/17/lib/log4j-1.2.13.jar:/opt/dev/t/17/lib/mockito-all-1.9.5.jar:/opt/dev/t/17:/opt/dev/t/17/build/classes:/opt/dev/t/17/build/test-classes
