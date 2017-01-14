@@ -23,8 +23,10 @@ In the test-client directory, there is a bash shell script called test-client.sh
 * *Update USERNAME_ variable to a valid value for your AAD tenant.*
 * *Update PASSWORD_ variable to a valid value for your AAD tenant.*
 * *Update the RESOURCE_URL variable to a valid value for your AAD tenant.*
-This script doesn't require any parameters and can be run as "./test-client.sh" from the test-client directory.
-
+This script doesn't require any parameters.  To execute it, run
+```
+./test-client.sh
+```
 ### Prerequisites
 
 ### Installing
