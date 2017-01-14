@@ -1,4 +1,4 @@
-# Apigee API Proxy + Azure Active Directory Integration Example
+# Apigee Edge API Proxy + Azure Active Directory Integration Example
 This is the source code and configuration used in a blog post describing how to protect APIs proxied by [Apigee Edge](https://www.apigee.com) using OAuth2 and JWT.  Azure Active Directory is used as the Identity Provider.
 
 The theory and end result is described in detail in this [blog post](https://www.medium.com).
@@ -6,11 +6,19 @@ The theory and end result is described in detail in this [blog post](https://www
 The configuration of the Azure Active Directory tenant needed to make this work is described in this [blog post](https://www.medium.com).
 
 ## Getting Started
-The quickest way to try out this project is to grab the API Proxy in zip form and deploy it to your own Apigee Edge Public Cloud community edition organization.
+These instructions assume a working knowledge of Apigee Edge Public Cloud.
 
-You can setup a free Apigee Edge Public Cloud account [here](https://enterprise.apigee.com).
+You can setup a free Apigee Edge Public Cloud account [here](https://enterprise.apigee.com).  There are various restrictions put in place on these types of accounts.  But, this API Proxy should be capable of working with those restrictions.
 
-There are various restrictions put in place on this 
+The quickest way to try out this project is to grab the API Proxy in [zip form](https://github.com/rcbj/apigee-jwt-aad-timeapi-proxy/proxy/AD-JWT-Protected-API-Proxy.zip) and deploy it to your own Apigee Edge Public Cloud community edition organization.
+
+An Apigee Cache called signer-cert must be created in the environment before the API Proxy can be deployed.
+
+Unfortunately, it costs me money to keep an AAD tenant running that will always work with this example out of the box.  Plus, open up some potentially undesirable security issues.  So, it will be necessary to setup your own AAD tenant with a test user account, global administrator account, API Consumer application definition, and API Provider application definition.  Once these are created, take note of the client_id for the API Consumer, the audience information for the API Provider, and test account username and password.
+
+To that end, you must update the Federation Metadata URL that is referenced in the Service Callout policy in the conditional rule called "parse + validate alg=RS256-ms".  In the Java Callout Policy, the claim_iss and claim_aud properties must be updated to reflect your configuration.  Save and deploy these updates.
+
+In the test-client directory, there is a bash shell script that simulates obtaining a JWT token from AAD and making an API call.  Make the following updates.
 
 ### Prerequisites
 
