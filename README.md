@@ -10,7 +10,7 @@ These instructions assume a working knowledge of Apigee Edge Public Cloud.
 
 You can setup a free Apigee Edge Public Cloud account [here](https://enterprise.apigee.com).  There are various restrictions put in place on these types of accounts.  But, this API Proxy should be capable of working with those restrictions.
 
-The quickest way to try out this project is to grab the API Proxy in [zip form](https://github.com/rcbj/apigee-jwt-aad-timeapi-proxy/proxy/AD-JWT-Protected-API-Proxy.zip) and deploy it to your own Apigee Edge Public Cloud community edition organization.
+The quickest way to try out this project is to grab the API Proxy in [zip form](https://github.com/rcbj/apigee-jwt-aad-timeapi-proxy/blob/master/proxy/AD-JWT-Protected-API-Proxy.zip) and deploy it to your own Apigee Edge Public Cloud community edition organization.
 
 An Apigee Cache called signer-cert must be created in the environment before the API Proxy can be deployed.
 
