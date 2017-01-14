@@ -55,17 +55,13 @@ apigeetool deployproxy  -u admin_user_for_org -p admin_password -o apigee_org  -
 ./test-client.sh
   ```
 ## Authors
-
 * **Robert C. Broeckelmann Jr.** - *Initial work*
-
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
-
 This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
-
 Thanks to Dino Chiesa and [this](https://github.com/apigee/iloveapis2015-jwt-jwe-jws) project for the base code.
 
 The [JSON Smart library](http://netplex.github.io/json-smart/) was modified slightly to work in Apigee Edge Public Cloud community edition.
