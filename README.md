@@ -57,6 +57,7 @@ apigeetool deployproxy  -u admin_user_for_org -p admin_password -o apigee_org  -
 
 ## Authors
 * **Robert C. Broeckelmann Jr.** - *Initial work*
+
 ## License
 This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
 
