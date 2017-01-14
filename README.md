@@ -79,6 +79,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+Thanks to Dino Chiesa and [this](https://github.com/apigee/iloveapis2015-jwt-jwe-jws) project for the base code.
+
+The [JSON Smart library](http://netplex.github.io/json-smart/) was modified slightly to work in Apigee Edge Public Cloud community edition.
+
+The  [Not Yet Commons SSL library](http://juliusdavies.ca/not-yet-commons-ssl-0.3.9/) was also modified slightly to work with Apigee Edge Public Cloud community edition.
