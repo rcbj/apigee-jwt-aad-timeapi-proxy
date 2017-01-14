@@ -1,0 +1,54 @@
+<JavaCallout name='JWT-Parse-Verify-RS256-salesforce'>
+  <DisplayName>JWT-Parse-Verify-RS256-salesforce</DisplayName>
+  <Properties>
+    <Property name="algorithm">RS256</Property>
+    <Property name="jwt">{request.formparam.jwt}</Property>
+
+<!--
+    <Property name="certificate">{sf_certificate}</Property>
+    <Property name="public-key">{sf_publickey}</Property>
+-->
+
+    <Property name="modulus">{sf_key_modulus}</Property>
+    <Property name="exponent">{sf_key_exponent}</Property>
+
+    <!--
+         I did not have success converting the salesforce modulus and
+         exponent into a PEM-encoded publickey or cert which could be
+         loaded by the Java callout, at runtime.
+
+         This is a static version of the public key .
+    -->
+
+<!--
+      computed from the modulus and exponent of kid 196
+
+    <Property name="public-key">
+
+      - - - - - BEGIN PUBLIC KEY - - - - -
+
+      MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA5SGw1jcqyFYEZaf39Rox
+      Ahlq+hfRSOsneVtsT2k09yEQhwB2myvf3ckVAwFyBF6y0Hr1psvu1FlPzKQ9YfcQ
+      kfge4e7eeQ7uaez9mMQ8RpyAFZprq1iFCix4XQw+jKW47LAevr9w1ttZY932gFrG
+      J4gkf/uqutUny82vupVUETpQ6HDmIL958SxYb/+d436zi5LMlHnTxcR5TWIQGGxi
+      p+CrD7vOA3hrssYLhNGQdwVYtwI768EvwE8h4VJDgIrovoHPH1ofDQk8+oG20eEm
+      ZeWugI1K3z33fZJS+E/2p/OiDVr0EmgFMTvPTnQ75h/9vyF1qhzikJpN9P8KcEm8
+      oGu7KJGIn8ggUY0ftqKG2KcWTaKiirFFYQ981PhLHryH18eOIxMpoh9pRXf2y7Df
+      NTyid99ig0GUH+lzAlbKY0EV2sIuvEsIoo6G8YT2uI72xzl7sCcp41FS7oFwbUyH
+      p/uHGiTZgN7g+18nm2TFmQ/wGB1xCwJMFzjIXq1PwEjmg3W5NBuMLSbG+aDwjeNr
+      cD/4vfB6yg548GztQO2MpV/BuxtrZDJQm+xhJXdm4FfrJzWdwX/JN9qfsP0YU1/m
+      xtSU/m6EKgmwFdE3Yh1WM0+kRRSk3gmNvXpiKeVduzm8I5/Jl7kwLgBw24QUVaLZ
+      n8jC2xWRk/jcBNFFLQgOf9UCAwEAAQ==
+      - - - - - END PUBLIC KEY - - - - -
+    </Property>
+-->
+
+    <!-- claims to verify -->
+    <Property name="claim_iss">https://deecee-apigee-dev-ed.my.salesforce.com</Property>
+    <Property name="claim_aud">3MVG9KI2HHAq33RwXB_oVQ9z4DW1hbgvILe5bvHn1QaC39aGLUVuW3fiV1_czozXeo8b.6_7YsP8EBeuH6QJ_</Property>
+
+  </Properties>
+
+  <ClassName>com.apigee.callout.jwtsigned.JwtParserCallout</ClassName>
+  <ResourceURL>java://jwt-signed-edge-callout.jar</ResourceURL>
+</JavaCallout>

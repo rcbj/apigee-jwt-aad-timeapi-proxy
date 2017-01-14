@@ -1,0 +1,10 @@
+<RaiseFault name="RaiseFault-TokenError">
+    <FaultResponse>
+        <Set>
+            <StatusCode>400</StatusCode>
+            <ReasonPhrase>Application Error</ReasonPhrase>
+            <Payload contentType='application/json' variablePrefix='%' variableSuffix='#'>{"APPLICATION ERROR" : "The token does not meet the required criteria"}</Payload>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

@@ -1,0 +1,11 @@
+<RaiseFault name="RaiseFault-JavaCalloutError">
+    <FaultResponse>
+        <Set>
+            <StatusCode>500</StatusCode>
+            <ReasonPhrase>Server Error</ReasonPhrase>
+            <!-- <Payload contentType='application/json' variablePrefix='%' variableSuffix='#'>{"error" : "%javaCalloutError#"}</Payload> -->
+            <Payload contentType='application/json' variablePrefix='%' variableSuffix='#'>{"SERVER ERROR" : "The token is invalid or expired"}</Payload>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

@@ -1,0 +1,245 @@
+<ProxyEndpoint name="default">
+  <HTTPProxyConnection>
+    <BasePath>/jwt_signed</BasePath>
+    <!-- <VirtualHost>default</VirtualHost> -->
+    <VirtualHost>secure</VirtualHost>
+  </HTTPProxyConnection>
+
+  <FaultRules>
+    <FaultRule name='rule1'>
+      <Condition>jwt_error != null</Condition>
+      <Step>
+        <Name>AM-PublishError</Name>
+      </Step>
+    </FaultRule>
+  </FaultRules>
+
+  <PreFlow name="PreFlow">
+    <Request>
+    </Request>
+  </PreFlow>
+
+  <PostFlow name="PostFlow"/>
+  <Flows>
+
+    <Flow name="create jwt token HS256">
+      <Condition>(proxy.pathsuffix ~~ "/create-(HS|hs)256$") and (request.verb = "POST")</Condition>
+      <Description>Create a JWT with alg=HS256</Description>
+      <Request>
+        <Step><Name>JWT-Create-HS256</Name></Step>
+      </Request>
+      <Response>
+        <Step><Name>AM-JWT-Create-Response</Name></Step>
+      </Response>
+    </Flow>
+
+    <Flow name="create jwt token RS256">
+      <Condition>(proxy.pathsuffix ~~ "/create-(RS|rs)256$") and (request.verb = "POST")</Condition>
+      <Description>Create a JWT with alg=RS256</Description>
+      <Request>
+        <Step><Name>JWT-Create-RS256</Name></Step>
+      </Request>
+      <Response>
+        <Step><Name>AM-JWT-Create-Response</Name></Step>
+      </Response>
+    </Flow>
+
+    <Flow name="create jwt token RS256-2">
+      <Condition>(proxy.pathsuffix ~~ "/create-(RS|rs)256-2$") and (request.verb = "POST")</Condition>
+      <Description>Create a JWT with alg=RS256</Description>
+      <Request>
+        <Step><Name>JWT-Create-RS256-2</Name></Step>
+      </Request>
+      <Response>
+        <Step><Name>AM-JWT-Create-Response</Name></Step>
+      </Response>
+    </Flow>
+
+    <Flow name="parse + validate a jwt token with alg=RS256">
+      <Condition>(proxy.pathsuffix ~~ "/validate-(RS|rs)256$") and (request.verb = "POST")</Condition>
+      <Description>Parse a JWT with alg=RS256</Description>
+      <Request>
+        <Step><Name>JWT-Parse-RS256</Name></Step>
+      </Request>
+      <Response>
+        <Step><Name>AM-JWT-Parse-Response</Name></Step>
+      </Response>
+    </Flow>
+
+    <Flow name="parse + validate a jwt token with alg=RS256-2">
+      <Condition>(proxy.pathsuffix ~~ "/validate-(RS|rs)256-2$") and (request.verb = "POST")</Condition>
+      <Description>Parse a JWT with alg=RS256 (Flavor 2)</Description>
+      <Request>
+        <Step><Name>JWT-Parse-RS256-2</Name></Step>
+      </Request>
+      <Response>
+        <Step><Name>AM-JWT-Parse-Response</Name></Step>
+      </Response>
+    </Flow>
+
+
+    <Flow name="parse + validate a jwt token with alg=HS256">
+      <Condition>(proxy.pathsuffix ~~ "/validate-(HS|hs)256$") and (request.verb = "POST")</Condition>
+      <Description>Parse a JWT with alg=HS256</Description>
+      <Request>
+        <Step><Name>JWT-Parse-HS256</Name></Step>
+      </Request>
+      <Response>
+        <Step><Name>AM-JWT-Parse-Response</Name></Step>
+      </Response>
+    </Flow>
+
+    <Flow name="parse + validate a jwt token with alg=HS256 (2)">
+      <Condition>(proxy.pathsuffix ~~ "/validate-(HS|hs)256-2$") and (request.verb = "POST")</Condition>
+      <Description>Parse a JWT with alg=HS256 (2)</Description>
+      <Request>
+        <Step><Name>JWT-Parse-HS256-2</Name></Step>
+      </Request>
+      <Response>
+        <Step><Name>AM-JWT-Parse-Response</Name></Step>
+      </Response>
+    </Flow>
+
+    <Flow name="parse the JWT from the OpenID Connect spec">
+      <Condition>(proxy.pathsuffix ~~ "/validate-openid$") and (request.verb = "POST")</Condition>
+      <Request>
+        <Step><Name>JWT-Parse-OpenIDConnect</Name></Step>
+      </Request>
+      <Response>
+        <Step><Name>AM-JWT-Parse-Response</Name></Step>
+      </Response>
+    </Flow>
+
+    <Flow name="parse + validate alg=RS256-ms">
+      <Condition>(proxy.pathsuffix ~~ "/validate-ms$") and (request.verb = "POST")</Condition>
+      <Description>Parse / Verify a JWT created by Azure Active Directory</Description>
+      <Request>
+        <!-- check the cache for the cert retrieved from login.microsoftonline.com -->
+        <Step><Name>CacheLookup-MsCert</Name></Step>
+        <Step>
+          <Name>SC-RetrieveMicrosoftCert</Name>
+          <Condition>cached.ms.cert = null</Condition>
+        </Step>
+        <Step>
+          <Name>JS-RemoveXmlDeclaration</Name>
+          <Condition>cached.ms.cert = null</Condition>
+        </Step>
+        <Step>
+          <Name>Extract-MsCert</Name>
+          <Condition>cached.ms.cert = null</Condition>
+        </Step>
+        <Step>
+          <Name>CacheInsert-MsCert</Name>
+          <Condition>cached.ms.cert = null</Condition>
+        </Step>
+        <Step>
+          <Name>AV-MsCert</Name>
+          <Condition>cached.ms.cert != null</Condition>
+        </Step>
+
+        <Step><Name>JWT-Parse-Verify-RS256-ms</Name></Step>
+        <Step>
+          <Name>RF-BadJwt</Name>
+          <Condition>jwt_clienterror != null</Condition>
+        </Step>
+
+      </Request>
+      <Response>
+        <Step><Name>AM-JWT-Parse-Response</Name></Step>
+      </Response>
+    </Flow>
+
+    <Flow name="parse + validate alg=RS256-goog">
+      <Condition>(proxy.pathsuffix ~~ "/validate-goog$") and (request.verb = "POST")</Condition>
+      <Description>Parse / Verify a JWT created by Google</Description>
+      <Request>
+        <!-- check cache for the google certs -->
+        <Step><Name>CacheLookup-GoogleCerts</Name></Step>
+
+        <Step>
+          <Name>SC-RetrieveGoogleCerts</Name>
+          <Condition>cached.google.certs = null</Condition>
+        </Step>
+        <Step>
+          <Name>CacheInsert-GoogleCerts</Name>
+          <Condition>cached.google.certs = null</Condition>
+        </Step>
+
+        <Step>
+          <Name>AV-GoogleCerts</Name>
+          <Condition>cached.google.certs != null</Condition>
+        </Step>
+
+        <Step><Name>JS-ExtractGoogleCerts</Name></Step>
+
+        <!-- this step determines which cert to use during the verification. -->
+        <Step><Name>JS-Extract-JWT-kid-for-Google</Name></Step>
+        <Step>
+          <Name>RF-BadJwt</Name>
+          <Condition>goog_certificate = null</Condition>
+        </Step>
+
+        <Step><Name>JWT-Parse-Verify-RS256-goog</Name></Step>
+      </Request>
+      <Response>
+        <Step><Name>AM-JWT-Parse-Response</Name></Step>
+      </Response>
+    </Flow>
+
+    <Flow name="parse + validate alg=HS256-paypal">
+      <Condition>(proxy.pathsuffix ~~ "/validate-paypal") and (request.verb = "POST")</Condition>
+      <Description>Parse / Verify a JWT created by Paypal</Description>
+      <Request>
+        <Step><Name>JWT-Parse-HS256-paypal</Name></Step>
+      </Request>
+      <Response>
+        <Step><Name>AM-JWT-Parse-Response</Name></Step>
+      </Response>
+    </Flow>
+
+    <Flow name="parse + validate alg=RS256-salesforce">
+      <Condition>(proxy.pathsuffix ~~ "/validate-sf$") and (request.verb = "POST")</Condition>
+      <Description>Parse / Verify a JWT created by Salesforce</Description>
+      <Request>
+        <!-- check cache for the sf keys -->
+        <Step><Name>CacheLookup-SalesforceKeys</Name></Step>
+
+        <!-- retrieve SF keys. -->
+        <Step>
+          <Name>SC-RetrieveSalesforceKeys</Name>
+          <Condition>cached.salesforce.keys = null</Condition>
+        </Step>
+        <Step>
+          <Name>CacheInsert-SalesforceKeys</Name>
+          <Condition>cached.salesforce.keys = null</Condition>
+        </Step>
+
+        <Step>
+          <Name>AV-SalesforceKeys</Name>
+          <Condition>cached.salesforce.keys != null</Condition>
+        </Step>
+
+        <Step><Name>JS-ExtractSalesforceKeys</Name></Step>
+
+        <!-- this step determines which key to use during the verification -->
+        <Step><Name>JS-Extract-JWT-kid-for-Salesforce</Name></Step>
+      </Request>
+      <Response>
+        <Step><Name>JWT-Parse-Verify-RS256-salesforce</Name></Step>
+        <Step><Name>AM-JWT-Parse-Response</Name></Step>
+      </Response>
+    </Flow>
+
+    <Flow name='unknown request'>
+      <Request>
+        <Step><Name>RF-UnknownRequest</Name></Step>
+      </Request>
+      <Response/>
+    </Flow>
+
+  </Flows>
+
+  <!-- catch all route -->
+  <RouteRule name="no-route"/>
+
+</ProxyEndpoint>

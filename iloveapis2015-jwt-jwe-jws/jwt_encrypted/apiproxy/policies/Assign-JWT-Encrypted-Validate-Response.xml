@@ -1,0 +1,13 @@
+<AssignMessage name="Assign-JWT-Encrypted-Validate-Response">
+    <Set>
+        <Payload contentType="application/json" variablePrefix="%"
+                 variableSuffix="#">{
+  "jwt":"%request.formparam.jwt#",
+  "claims":%jwt_receivedClaims#,
+  "isExpired" : "%jwtIsExpired#"
+}
+</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

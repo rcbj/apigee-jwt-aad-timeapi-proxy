@@ -1,0 +1,10 @@
+<JavaCallout name="JWT_Encrypted_Validator_Callout">
+    <Properties>
+        <Property name="jwt">{request.formparam.jwt}</Property>
+        <!-- private-key and private-key-password used only for algorithm = RS256 -->
+        <Property name="private-key">{privateKeyPemEncoded}</Property>
+        <Property name="private-key-password">{privateKeyPassword}</Property>
+    </Properties>
+    <ClassName>com.apigee.callout.jwt_encrypted.JWT_Encrypted_Validator_Callout</ClassName>
+    <ResourceURL>java://jwt-encrypted-edge-callout.jar</ResourceURL>
+</JavaCallout>

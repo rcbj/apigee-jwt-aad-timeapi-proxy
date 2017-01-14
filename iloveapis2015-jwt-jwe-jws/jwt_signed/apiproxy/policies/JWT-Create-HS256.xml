@@ -1,0 +1,22 @@
+
+<JavaCallout name='JWT-Create-HS256' >
+  <DisplayName>JWT-Create-HS256</DisplayName>
+  <Properties>
+    <Property name="algorithm">HS256</Property>
+    <Property name='secret-key'>{request.formparam.key}</Property>
+
+    <!-- standard claims -->
+    <Property name="subject">http://dinochiesa.net</Property>
+    <Property name="issuer">ApigeeEdge-{organization.name}-{environment.name}-{request.path}</Property>
+    <Property name="audience">{apiproxy.name}</Property>
+    <Property name="expiresIn">1800</Property> <!-- in seconds -->
+
+    <!-- custom claims -->
+    <Property name="claim_shoesize">9</Property>
+    <Property name="claim_motto">Iloveapis</Property>
+
+  </Properties>
+
+  <ClassName>com.apigee.callout.jwtsigned.JwtCreatorCallout</ClassName>
+  <ResourceURL>java://jwt-signed-edge-callout.jar</ResourceURL>
+</JavaCallout>

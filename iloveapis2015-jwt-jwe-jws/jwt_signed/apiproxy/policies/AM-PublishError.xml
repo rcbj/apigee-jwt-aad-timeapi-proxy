@@ -1,0 +1,18 @@
+<AssignMessage name='AM-PublishError'>
+  <!-- <AssignTo createNew='false' transport='http' type='request'></AssignTo> -->
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <Set>
+    <Payload contentType='application/json'
+             variablePrefix='%' variableSuffix='#'><![CDATA[{
+  "error" : {
+    "code" : 500,
+    "jwt_error" : "jwt_error",
+    "message" : "%jwt_error#",
+    "reason" : "%jwt_reason#"
+  }
+}
+]]></Payload>
+    <StatusCode>500</StatusCode>
+    <ReasonPhrase>Server Error</ReasonPhrase>
+  </Set>
+</AssignMessage>

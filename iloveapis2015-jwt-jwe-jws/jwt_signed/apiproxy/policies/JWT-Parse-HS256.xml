@@ -1,0 +1,17 @@
+<JavaCallout name='JWT-Parse-HS256'>
+  <Properties>
+    <Property name="algorithm">HS256</Property>
+    <Property name="jwt">{request.formparam.jwt}</Property>
+    <Property name='secret-key'>{request.formparam.key}</Property>
+
+    <!-- verify these claims -->
+    <Property name="claim_sub">http://dinochiesa.net</Property>
+    <!-- <Property name="claim_iss">http://dinochiesa.net</Property> -->
+    <Property name="claim_aud">{apiproxy.name}</Property>
+    <Property name="claim_shoesize">9</Property>
+
+  </Properties>
+
+  <ClassName>com.apigee.callout.jwtsigned.JwtParserCallout</ClassName>
+  <ResourceURL>java://jwt-signed-edge-callout.jar</ResourceURL>
+</JavaCallout>
