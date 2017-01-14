@@ -27,6 +27,7 @@ This script doesn't require any parameters.  To execute it, run
 ```
 ./test-client.sh
 ```
+You  can enable the API Proxy Trace in the Apigee Management Console.
 ### Prerequisites
 
 ### Installing
