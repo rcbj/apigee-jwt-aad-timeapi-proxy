@@ -1,0 +1,91 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "timeapi",
+        "description": "RCBJ's quick openapi definition of proxied timeapi.org",
+        "version": "1.0.0"
+    },
+    "host": "rcbjbluemars-test.apigee.net",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/time001",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/{timezone}/{when}.json": {
+            "get": {
+                "summary": "UTC time at when",
+                "description": "UTC time at when.\n",
+                "parameters": [
+                    {
+                        "name": "timezone",
+                        "in": "path",
+                        "description": "the time when?.",
+                        "required": true,
+                        "type": "string",
+                        "pattern": "pst|mst|cst|est|pdt|mdt|cdt|edt|utc"
+                    },
+                    {
+                        "name": "when",
+                        "in": "path",
+                        "description": "the time when?.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "format",
+                        "in": "query",
+                        "description": "time format for response.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Time"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Time",
+                        "schema": {
+                            "$ref": "#/definitions/Time"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Time": {
+            "type": "object",
+            "properties": {
+                "dateString": {
+                    "type": "string",
+                    "description": "The date string that was requested."
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "fields": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
