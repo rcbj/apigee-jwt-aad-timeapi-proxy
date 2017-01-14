@@ -36,19 +36,24 @@ To run this project you will need
 * *Working knowledge of Azure Active Directory (or careful review of the [this post](https://www.medium.com))*
 
 ### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-### And coding style tests
-
-Explain what these tests test and why
-
+1. Clone this repository to a local file system.
+2. Install the apigeetool by running "npm -g install apigeetool".  If npm (Node Package Manager) is not already installed, then this will also need to be installed.
+3. Deploy the API Proxy by running:
 ```
-Give an example
+apigeetool deployproxy  -u admin_user_for_org -p admin_password -o apigee_org  -e env_name -n jwt_signed -d ${REPOSITORY_HOME}/proxy
 ```
-
+4. Update the Federation Metadata URL that is referenced in the Service Callout policy in the conditional rule called "parse + validate alg=RS256-ms".  
+5. In the Java Callout Policy, the claim_iss and claim_aud properties must be updated to reflect your configuration.  
+6. Save and deploy these updates.
+7. On the local file system where you cloned this repository, In the test-client directory, there is a bash shell script called test-client.sh, that simulates obtaining a JWT token from AAD and making an API call.  Make the following updates.
+* *Update CLIENT_ID variable to a valid value for your AAD tenant.*
+* *Update USERNAME_ variable to a valid value for your AAD tenant.*
+* *Update PASSWORD_ variable to a valid value for your AAD tenant.*
+* *Update the RESOURCE_URL variable to a valid value for your AAD tenant.*
+8. To test the API, run:
+```
+./test-client.sh
+```
 ## Deployment
 
 Add additional notes about how to deploy this on a live system
