@@ -29,6 +29,11 @@ This script doesn't require any parameters.  To execute it, run
 ```
 You  can enable the API Proxy Trace in the Apigee Management Console.
 ### Prerequisites
+To run this project you will need
+* *An Apigee Edge account*
+* *Working knowledge of Apigee Edge*
+* *Access to an Azure Active Directory tenant that has been configured similar to [this post](https://www.medium.com)*
+* *Working knowledge of Azure Active Directory (or careful review of the [this post](https://www.medium.com))*
 
 ### Installing
 
