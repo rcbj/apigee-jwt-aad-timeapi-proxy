@@ -55,12 +55,19 @@
                     <FaultRules/>
                     <Name>RF-BadJwt</Name>
                 </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/**") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="OPTIONS Method Preflight">
+            <Description/>
+            <Request>
                 <Step>
-                    <Name>JavaScript-1</Name>
+                    <Name>add-cors</Name>
                 </Step>
             </Request>
             <Response/>
-            <Condition>(proxy.pathsuffix ~~ "/utc/now.json") and (request.verb = "GET")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/**") and (request.verb = "OPTIONS")</Condition>
         </Flow>
         <Flow name="unknown request">
             <Request>
@@ -85,6 +92,9 @@
         <Properties/>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
+    <RouteRule name="NoRoute">
+        <Condition>request.verb == "OPTIONS"</Condition>
+    </RouteRule>
     <RouteRule name="default">
         <TargetEndpoint>default</TargetEndpoint>
     </RouteRule>

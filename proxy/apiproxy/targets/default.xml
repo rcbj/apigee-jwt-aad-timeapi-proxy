@@ -17,6 +17,6 @@
     <Flows/>
     <HTTPTargetConnection name="default">
         <Properties/>
-        <URL>http://www.timeapi.org</URL>
+        <URL>https://www.timeapi.org</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>
