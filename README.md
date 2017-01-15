@@ -19,10 +19,11 @@ Unfortunately, it costs me money to keep an AAD tenant running that will always 
 To that end, you must update the Federation Metadata URL that is referenced in the Service Callout policy in the conditional rule called "parse + validate alg=RS256-ms".  In the Java Callout Policy, the claim_iss and claim_aud properties must be updated to reflect your configuration.  Save and deploy these updates.
 
 In the test-client directory, there is a bash shell script called test-client.sh, that simulates obtaining a JWT token from AAD and making an API call.  Make the following updates.
-* *Update CLIENT_ID variable to a valid value for your AAD tenant.*
-* *Update USERNAME_ variable to a valid value for your AAD tenant.*
-* *Update PASSWORD_ variable to a valid value for your AAD tenant.*
+* *Update the CLIENT_ID variable to a valid value for your AAD tenant.*
+* *Update the USERNAME_ variable to a valid value for your AAD tenant.*
+* *Update the PASSWORD_ variable to a valid value for your AAD tenant.*
 * *Update the RESOURCE_URL variable to a valid value for your AAD tenant.*
+* *Update the TENANT_ID variable to the identifier for your AAD tenant.*
 This script doesn't require any parameters.  To execute it, run
 ```
 ./test-client.sh
