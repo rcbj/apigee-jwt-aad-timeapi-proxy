@@ -1,7 +1,7 @@
 # Apigee Edge API Proxy + Azure Active Directory Integration Example
 This is the source code and configuration used in a blog post describing how to protect APIs proxied by [Apigee Edge](https://www.apigee.com) using OAuth2 and JWT.  Azure Active Directory is used as the Identity Provider.
 
-The theory and end result is described in detail in this [blog post](https://www.medium.com).
+The theory and end result is described in detail in this [blog post](https://medium.com/@robert.broeckelmann/saml2-vs-jwt-apigee-azure-active-directory-integration-a-jwt-story-a3eb00769a1f).
 
 The configuration of the Azure Active Directory tenant needed to make this work is described in this [blog post](https://www.medium.com).
 
