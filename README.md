@@ -51,6 +51,7 @@ apigeetool deployproxy  -u admin_user_for_org -p admin_password -o apigee_org  -
   * *Update USERNAME_ variable to a valid value for your AAD tenant.*
   * *Update PASSWORD_ variable to a valid value for your AAD tenant.*
   * *Update the RESOURCE_URL variable to a valid value for your AAD tenant.*
+  * *Update the TENANT_ID variable to the identifier for your AAD tenant.*
 8. To test the API, run:
   ```
 ./test-client.sh
