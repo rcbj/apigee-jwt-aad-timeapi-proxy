@@ -9,10 +9,20 @@
     "schemes": [
         "https"
     ],
-    "basePath": "/time001",
+    "basePath": "/time",
     "produces": [
         "application/json"
     ],
+    "securityDefinitions": {
+        "oauth2ResourcePasswordGrant": {
+            "type": "oauth2",
+            "flow": "password",
+            "tokenUrl": "https://login.microsoftonline.com/75de389c-8f67-4084-9065-3a9c31e1db13/oauth2/token",
+            "scopes": {
+                "scope1": "https://rcbj0001-api.rcbj.net/"
+            }
+        }
+    },
     "paths": {
         "/{timezone}/{when}.json": {
             "get": {
@@ -58,7 +68,14 @@
                             "$ref": "#/definitions/Error"
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "oauth2ResourcePasswordGrant": [
+                            "scope1"
+                        ]
+                    }
+                ]
             }
         }
     },
