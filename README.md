@@ -54,7 +54,7 @@ apigeetool deployproxy  -u admin_user_for_org -p admin_password -o apigee_org  -
   ```
 ./test-client.sh
   ```
-## Building JSON Smart
+### Building JSON Smart
 You probably won't have to do this, but if necessary, do the following:
 1. cd $RESPOSITORY_HOME/json_smart
 2. export JAVA_HOME=PATH_TO_JAVA
@@ -65,7 +65,7 @@ You probably won't have to do this, but if necessary, do the following:
 7. Run "jar cvf json-smart.jar net".
 8. run "cp json-smar.jar ../../proxy/apiproxy/resources/java".
 
-## Building Not Yet Common SSL
+### Building Not Yet Common SSL
 You probably won't have to do this, but if necessary, do the following:
 1. cd $RESPOSITORY_HOME/not_yet_commons/not-yet-commons-ssl-0.3.17
 2. export JAVA_HOME=PATH_TO_JAVA
