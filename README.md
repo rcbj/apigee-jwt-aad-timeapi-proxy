@@ -56,11 +56,11 @@ apigeetool deployproxy  -u admin_user_for_org -p admin_password -o apigee_org  -
   ```
   
 ### Building JSON Smart
-
 You probably won't have to do this, but if necessary, do the following:
-1. cd $RESPOSITORY_HOME/json_smart
-2. export JAVA_HOME=PATH_TO_JAVA
-3. export PATH=$JAVA_HOME/bin:$PATH
+
+1. Run "cd $RESPOSITORY_HOME/json_smart".
+2. Run "export JAVA_HOME=PATH_TO_JAVA".
+3. Run "export PATH=$JAVA_HOME/bin:$PATH".
 4. Install Ant.  On Fedoara Core 23, this would be done by running "dnf install ant" as root.
 5. Run "ant compile" to build the class files.
 6. Run "cd bin".
@@ -68,11 +68,11 @@ You probably won't have to do this, but if necessary, do the following:
 8. run "cp json-smar.jar ../../proxy/apiproxy/resources/java".
 
 ### Building Not Yet Common SSL
-
 You probably won't have to do this, but if necessary, do the following:
-1. cd $RESPOSITORY_HOME/not_yet_commons/not-yet-commons-ssl-0.3.17
-2. export JAVA_HOME=PATH_TO_JAVA
-3. export PATH=$JAVA_HOME/bin:$PATH
+
+1. Run "cd $RESPOSITORY_HOME/not_yet_commons/not-yet-commons-ssl-0.3.17".
+2. Run "export JAVA_HOME=PATH_TO_JAVA".
+3. Run "export PATH=$JAVA_HOME/bin:$PATH".
 4. Install Ant.  On Fedoara Core 23, this would be done by running "dnf install ant" as root.
 5. Run "ant jars" to build the class files.
 7. run "cp build/not-yet-commons-ssl.jar ../proxy/apiproxy/resources/java".
