@@ -3,7 +3,7 @@ This is the source code and configuration used in a blog post describing how to 
 
 The theory and end result is described in detail in this [blog post](https://medium.com/@robert.broeckelmann/saml2-vs-jwt-apigee-azure-active-directory-integration-a-jwt-story-a3eb00769a1f).
 
-The configuration of the Azure Active Directory tenant needed to make this work is described in this [blog post](https://www.medium.com).
+The configuration of the Azure Active Directory tenant needed to make this work is described in this [blog post](https://medium.com/@robert.broeckelmann/azure-active-directory-setup-for-api-actors-66edf608fae9).
 
 ## Getting Started
 These instructions assume a working knowledge of Apigee Edge Public Cloud.
